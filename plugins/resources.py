@@ -33,6 +33,7 @@ async def resources(_, query):
         return
 
     subject_name = subjects[idx]
+    subject_code = subject_name.split("|")[0].strip().lower()
 
     text = (
         f"📚 {subject_name}\n\n"
@@ -48,8 +49,11 @@ async def resources(_, query):
     except:
         data = {}
 
-    notes_key = f"notes_{year}_{branch}_sem{sem_no}_{subject_name.lower()}"
-    pyq_key = f"pyq_{year}_{branch}_sem{sem_no}_{subject_name.lower()}"
+    notes_key = f"notes_{year}_{branch}_sem{sem_no}_{subject_code}"
+    await query.message.reply_text(
+        f"Searching:\n{notes_key}"
+    )    
+    pyq_key = f"pyq_{year}_{branch}_sem{sem_no}_{subject_code}"
 
     available = (
         notes_key in data or
@@ -64,21 +68,20 @@ async def resources(_, query):
             [
                 InlineKeyboardButton(
                     "📚 Notes",
-                    callback_data=f"notes_{year}_{branch}_sem{sem_no}_{subject_name.lower()}"
+                    callback_data=f"notes_{year}_{branch}_sem{sem_no}_{subject_code}"
                 ),
                 InlineKeyboardButton(
                     "📝 PYQ",
-                    callback_data=f"pyq_{year}_{branch}_sem{sem_no}_{subject_name.lower()}"
+                    callback_data=f"pyq_{year}_{branch}_sem{sem_no}_{subject_code}"
                 )
             ],
             [
                 InlineKeyboardButton(
                     "📄 Model",
-                    callback_data=f"model_{year}_{branch}_sem{sem_no}_{subject_name.lower()}"
-                ),
+                    callback_data=f"model_{year}_{branch}_sem{sem_no}_{subject_code}"
                 InlineKeyboardButton(
                     "🎥 Videos",
-                    callback_data=f"video_{year}_{branch}_sem{sem_no}_{subject_name.lower()}"
+                    callback_data=f"video_{year}_{branch}_sem{sem_no}_{subject_code}"
                 )
             ],
             [
