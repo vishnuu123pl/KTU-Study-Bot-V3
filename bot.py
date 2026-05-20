@@ -9,8 +9,13 @@ app = Client(
     plugins=dict(root="plugins")
 )
 
+
 async def main():
+
     await app.start()
-    print("✅ Bot Started")
+
+    print("✅ Bot Started Successfully")
+
     await idle()
+
     await app.stop()
