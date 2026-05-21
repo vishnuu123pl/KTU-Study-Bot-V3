@@ -27,6 +27,24 @@ A **Telegram bot** built for **KTU (APJ Abdul Kalam Technological University) B.
 | 👥 User Tracking | Tracks registered users for broadcasts |
 
 ---
+## ⚠ Known Limitations
+
+Current version uses local JSON storage (`storage.json`, `users.json`) instead of a dedicated database.
+
+### Limitations
+
+- Data may reset after some redeployments or server resets
+- Not recommended for large-scale public usage
+- Uploaded resources depend on local file storage
+- No persistent cloud database integration yet
+- Designed for testing / beta usage currently
+
+For better stability in production, migrate to:
+
+- MongoDB
+- PostgreSQL
+- Redis
+- Supabase
 
 ## 🗂 Project Structure
 
