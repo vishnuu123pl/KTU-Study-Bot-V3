@@ -25,7 +25,7 @@ START_BUTTONS = InlineKeyboardMarkup([
     [
         InlineKeyboardButton(
             "📢 Updates",
-            url="https://t.me/YOUR_CHANNEL"
+            url="https://t.me/YOUR_CHANNEL" #add your channel link
         ),
         InlineKeyboardButton(
             "ℹ️ About",
@@ -48,8 +48,11 @@ async def start(client, message):
 
     if user not in users:
         users.append(user)
-        with open("users.json", "w") as f:
-            json.dump(users, f)
+        try:
+            with open("users.json", "w") as f:
+                json.dump(users, f)
+        except Exception:
+            pass
 
     await message.reply_text(
         START_TEXT,
