@@ -12,19 +12,19 @@ async def scheme(_, query):
     buttons = InlineKeyboardMarkup([
         [
             InlineKeyboardButton(
-                "📘 2024 Scheme",
+                "📘 2024 𝘚𝘤𝘩𝘦𝘮𝘦",
                 callback_data=f"scheme_2024_{cat}"
             )
         ],
         [
             InlineKeyboardButton(
-                "📗 2019 Scheme",
+                "📗 2019 𝘚𝘤𝘩𝘦𝘮𝘦",
                 callback_data=f"scheme_2019_{cat}"
             )
         ],
         [
             InlineKeyboardButton(
-                "⬅ Back",
+                "⬅ 𝘉𝘢𝘤𝘬",
                 callback_data="back_home"
             )
         ]
@@ -33,7 +33,7 @@ async def scheme(_, query):
     try:
 
         await query.message.edit_text(
-            "📚 **Select KTU Scheme** 👇",
+            "📚 **𝘚𝘦𝘭𝘦𝘤𝘵 𝘒𝘛𝘜 𝘚𝘤𝘩𝘦𝘮𝘦** 👇",
             reply_markup=buttons
         )
 
