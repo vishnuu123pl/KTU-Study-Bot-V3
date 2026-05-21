@@ -23,12 +23,12 @@ async def upload(_, message):
         )
 
         await message.reply_text(
-            "📄 Now send PDF"
+            "📄 𝘕𝘰𝘸 𝘴𝘦𝘯𝘥 𝘗𝘋𝘍"
         )
 
     except:
         await message.reply_text(
-            "Usage:\n/upload notes 2024 cse sem1 gymat101"
+            "𝘜𝘴𝘢𝘨𝘦:\n/upload notes 2024 cse sem1 gymat101"
         )
         
 @Client.on_message(
@@ -62,7 +62,7 @@ async def save(_, message):
         json.dump(data, f, indent=4)
 
     await message.reply_text(
-        f"✅ Saved Successfully\n\nKey: {key}"
+        f"✅ 𝘚𝘢𝘷𝘦𝘥 𝘚𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺\n\n𝘒𝘦𝘺: {key}"
     )
 
 @Client.on_message(
@@ -76,7 +76,7 @@ async def done(_, message):
         del temp[message.from_user.id]
 
     await message.reply_text(
-        "✅ Upload completed"
+        "✅ 𝘜𝘱𝘭𝘰𝘢𝘥 𝘤𝘰𝘮𝘱𝘭𝘦𝘵𝘦𝘥"
     )
 
 @Client.on_message(
@@ -95,7 +95,7 @@ async def delete_file(_, message):
 
         if key not in data:
             await message.reply_text(
-                "⚠️ File not found"
+                "⚠️ 𝘍𝘪𝘭𝘦 𝘯𝘰𝘵 𝘧𝘰𝘶𝘯𝘥"
             )
             return
 
@@ -105,12 +105,12 @@ async def delete_file(_, message):
             json.dump(data, f, indent=4)
 
         await message.reply_text(
-            f"🗑 Deleted\n\n{key}"
+            f"🗑 𝘋𝘦𝘭𝘦𝘵𝘦𝘥\n\n{key}"
         )
 
     except:
         await message.reply_text(
-            "Usage:\n/delete notes 2024 cse sem1 gymat101"
+            "𝘜𝘴𝘢𝘨𝘦:\n/delete notes 2024 cse sem1 gymat101"
         )
 
 @Client.on_message(
@@ -125,11 +125,11 @@ async def list_files(_, message):
 
         if not data:
             await message.reply_text(
-                "📂 No files uploaded"
+                "📂 𝘕𝘰 𝘧𝘪𝘭𝘦𝘴 𝘶𝘱𝘭𝘰𝘢𝘥𝘦𝘥"
             )
             return
 
-        text = "📚 Uploaded Files:\n\n"
+        text = "📚 𝘜𝘱𝘭𝘰𝘢𝘥𝘦𝘥 𝘍𝘪𝘭𝘦𝘴:\n\n"
 
         for key in data:
             text += f"• {key}\n"
@@ -138,7 +138,7 @@ async def list_files(_, message):
 
     except:
         await message.reply_text(
-            "⚠️ Error reading storage"
+            "⚠️ 𝘌𝘳𝘳𝘰𝘳 𝘳𝘦𝘢𝘥𝘪𝘯𝘨 𝘴𝘵𝘰𝘳𝘢𝘨𝘦"
         )
 
 @Client.on_message(
@@ -157,9 +157,9 @@ async def stats(_, message):
     total = sum(len(v) for v in data.values())
 
     await message.reply_text(
-        f"📊 Total resources: {total}"
+        f"📊 𝘛𝘰𝘵𝘢𝘭 𝘳𝘦𝘴𝘰𝘶𝘳𝘤𝘦𝘴: {total}"
     )
 
     await message.reply_text(
-        f"📊 Total Materials: {len(data)}"
+        f"📊 𝘛𝘰𝘵𝘢𝘭 𝘔𝘢𝘵𝘦𝘳𝘪𝘢𝘭𝘴: {len(data)}"
     )
