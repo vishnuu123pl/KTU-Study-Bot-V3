@@ -2,9 +2,6 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from data import DATA
 
-# callback format:
-# <branch>_<sem>_<year>_<cat>
-# example: cse_sem3_2024_materials
 
 @Client.on_callback_query(
     filters.regex(
@@ -13,20 +10,20 @@ from data import DATA
 )
 async def subject(_, query):
 
-    parts = query.data.split("_")
-    # ['cse','sem3','2024','materials']
+    _, branch, sem, year, cat = query.data.split("_", 4)
 
-    branch = parts[0]
-    sem    = parts[1]   # e.g. "sem3"
-    year   = parts[2]
-    cat    = parts[3]
-
-    # FIX: DATA is keyed by branch directly, not by year
-    subjects = DATA.get(branch, {}).get(sem, [])
+    subjects = DATA.get(
+        branch,
+        {}
+    ).get(
+        sem,
+        []
+    )
 
     if not subjects:
+
         await query.answer(
-            "⚠️ No subjects found for this selection.",
+            "⚠️ No subjects found.",
             show_alert=True
         )
         return
@@ -34,13 +31,24 @@ async def subject(_, query):
     rows = []
 
     for idx, sub in enumerate(subjects):
+
         display = sub[:40]
-        cb = f"res_{branch}_{sem}_{year}_{cat}_{idx}"
+
+        cb = (
+            f"res_{branch}_"
+            f"{sem}_"
+            f"{year}_"
+            f"{cat}_"
+            f"{idx}"
+        )
+
         rows.append([
-            InlineKeyboardButton(display, callback_data=cb)
+            InlineKeyboardButton(
+                display,
+                callback_data=cb
+            )
         ])
 
-    # FIX: Back button pointed to "sub_..." which had no handler — now goes to branch selector
     rows.append([
         InlineKeyboardButton(
             "⬅ Back",
@@ -48,9 +56,15 @@ async def subject(_, query):
         )
     ])
 
-    await query.message.edit_text(
-        "📚 **Select Subject**",
-        reply_markup=InlineKeyboardMarkup(rows)
-    )
+    try:
+
+        await query.message.edit_text(
+            "📚 **Select Subject**",
+            reply_markup=InlineKeyboardMarkup(rows)
+        )
+
+    except:
+
+        pass
 
     await query.answer()
