@@ -3,35 +3,37 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import json
 
 START_TEXT = """
-🎓 <b>Welcome to KTU Study Bot</b>
+🎓 <b>𝘞𝘦𝘭𝘤𝘰𝘮𝘦 𝘵𝘰 KTU 𝘚𝘵𝘶𝘥𝘺 𝘉𝘰𝘵</b>
 
-Your smart study companion for KTU students.
+𝘠𝘰𝘶𝘳 𝘢𝘭𝘭-𝘪𝘯-𝘰𝘯𝘦 𝘴𝘵𝘶𝘥𝘺 𝘤𝘰𝘮𝘱𝘢𝘯𝘪𝘰𝘯 𝘧𝘰𝘳 KTU 𝘴𝘵𝘶𝘥𝘦𝘯𝘵𝘴.
 
-📚 Notes
-📝 Previous Year Questions
-📄 Model Papers
-🎥 Video Resources
+╭─ ✦ 𝘈𝘷𝘢𝘪𝘭𝘢𝘣𝘭𝘦 𝘙𝘦𝘴𝘰𝘶𝘳𝘤𝘦𝘴 ✦ ─╮
+📚 𝘕𝘰𝘵𝘦𝘴
+📝 𝘗𝘳𝘦𝘷𝘪𝘰𝘶𝘴 𝘠𝘦𝘢𝘳 𝘘𝘶𝘦𝘴𝘵𝘪𝘰𝘯𝘴
+📄 𝘔𝘰𝘥𝘦𝘭 𝘗𝘢𝘱𝘦𝘳𝘴
+🎥 𝘝𝘪𝘥𝘦𝘰 𝘙𝘦𝘴𝘰𝘶𝘳𝘤𝘦𝘴
+╰─────────────────────╯
 
-📖 Semester & Branch wise access
-⚡ Fast and easy navigation
+📖 𝘚𝘦𝘮𝘦𝘴𝘵𝘦𝘳 & 𝘉𝘳𝘢𝘯𝘤𝘩 𝘞𝘪𝘴𝘦 𝘈𝘤𝘤𝘦𝘴𝘴
+⚡ 𝘍𝘢𝘴𝘵 • 𝘖𝘳𝘨𝘢𝘯𝘪𝘻𝘦𝘥 • 𝘌𝘢𝘴𝘺
 
-Select your course below 👇
+👇 𝘚𝘦𝘭𝘦𝘤𝘵 𝘺𝘰𝘶𝘳 𝘤𝘰𝘶𝘳𝘴𝘦 𝘵𝘰 𝘨𝘦𝘵 𝘴𝘵𝘢𝘳𝘵𝘦𝘥
 """
 
 START_BUTTONS = InlineKeyboardMarkup([
     [
         InlineKeyboardButton(
-            "🎓 B.Tech",
+            "🎓 𝘉.𝘛𝘦𝘤𝘩",
             callback_data="cat_materials"
         )
     ],
     [
         InlineKeyboardButton(
-            "💻 Source Code",
+            "💻 𝘚𝘰𝘶𝘳𝘤𝘦 𝘊𝘰𝘥𝘦",
             url="https://github.com/vishnuu123pl/KTU-Study-Bot-V3"
         ),
         InlineKeyboardButton(
-            "ℹ️ About",
+            "ℹ️ 𝘈𝘣𝘰𝘶𝘵",
             callback_data="about"
         )
     ]
