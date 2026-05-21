@@ -3,9 +3,8 @@ import json
 try:
     with open("users.json") as f:
         users=json.load(f)
-except:
+except FileNotFoundError:
     users=[]
-
 user=message.from_user.id
 
 if user not in users:
