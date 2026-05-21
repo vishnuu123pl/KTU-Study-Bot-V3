@@ -19,7 +19,7 @@ async def send_resource(_, query):
     if key not in data:
 
         await query.answer(
-            "⚠️ Resource not uploaded yet",
+            "⚠️ 𝘙𝘦𝘴𝘰𝘶𝘳𝘤𝘦 𝘯𝘰𝘵 𝘶𝘱𝘭𝘰𝘢𝘥𝘦𝘥 𝘺𝘦𝘵",
             show_alert=True
         )
         return
