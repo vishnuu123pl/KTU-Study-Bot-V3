@@ -1,6 +1,5 @@
 from pyrogram import Client, filters
 import json
-# ✅ Fix — import from config
 from config import ADMINS
 
 temp = {}
