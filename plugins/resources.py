@@ -26,6 +26,7 @@ async def resources(_, query):
     subjects = DATA.get(branch, {}).get(sem, [])
 
     if idx >= len(subjects):
+
         await query.answer(
             "⚠️ Subject not found",
             show_alert=True
@@ -33,80 +34,57 @@ async def resources(_, query):
         return
 
     subject_name = subjects[idx]
-    subject_code = subject_name.split("|")[0].strip().lower()
+
+    # Example:
+    # GYMAT101 | Mathematics...
+    # becomes:
+    # gymat101
+    subject_code = (
+        subject_name.split("|")[0]
+        .strip()
+        .lower()
+    )
 
     text = (
         f"📚 {subject_name}\n\n"
-        f"🏷 Category: {CAT_LABELS.get(cat, cat)}\n"
-        f"📘 Scheme: {year}\n"
-        f"📖 Semester: {sem_no}\n"
         f"🏫 Branch: {branch.upper()}\n"
+        f"📖 Semester: {sem_no}\n"
+        f"📘 Scheme: {year}\n\n"
+        f"Choose resource below 👇"
     )
 
-    try:
-        with open("storage.json") as f:
-            data = json.load(f)
+    buttons = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(
+                "📚 Notes",
+                callback_data=f"notes_{year}_{branch}_sem{sem_no}_{subject_code}"
+            ),
 
-    except:
-        data = {}
+            InlineKeyboardButton(
+                "📝 PYQ",
+                callback_data=f"pyq_{year}_{branch}_sem{sem_no}_{subject_code}"
+            )
+        ],
 
-    notes_key = f"notes_{year}_{branch}_sem{sem_no}_{subject_code}"
-    pyq_key = f"pyq_{year}_{branch}_sem{sem_no}_{subject_code}"
+        [
+            InlineKeyboardButton(
+                "📄 Model Papers",
+                callback_data=f"model_{year}_{branch}_sem{sem_no}_{subject_code}"
+            ),
 
-    available = (
-        notes_key in data or
-        pyq_key in data
-    )
+            InlineKeyboardButton(
+                "🎥 Videos",
+                callback_data=f"video_{year}_{branch}_sem{sem_no}_{subject_code}"
+            )
+        ],
 
-    if available:
-
-        text += "\n\nSelect resource below 👇"
-
-        buttons = InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton(
-                    "📚 Notes",
-                    callback_data=notes_key
-                ),
-                InlineKeyboardButton(
-                    "📝 PYQ",
-                    callback_data=pyq_key
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    "📄 Model",
-                    callback_data=f"model_{year}_{branch}_sem{sem_no}_{subject_code}"
-                ),
-                InlineKeyboardButton(
-                    "🎥 Videos",
-                    callback_data=f"video_{year}_{branch}_sem{sem_no}_{subject_code}"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    "⬅ Back",
-                    callback_data=f"sub_{branch}_{sem}_{year}_{cat}"
-                )
-            ]
-        ])
-
-    else:
-
-        text += (
-            "\n\n⚠️ Currently not available\n"
-            "Adding soon.\n"
-            "Contact admin."
-        )
-
-        buttons = InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton(
-                    "⬅ Back",
-                    callback_data=f"sub_{branch}_{sem}_{year}_{cat}"
-                )
-            ]
-        ])
+        [
+            InlineKeyboardButton(
+                "⬅ Back",
+                callback_data=f"sub_{branch}_{sem}_{year}_{cat}"
+            )
+        ]
+    ])
 
     try:
 
@@ -116,6 +94,7 @@ async def resources(_, query):
         )
 
     except:
+
         pass
 
     await query.answer()
