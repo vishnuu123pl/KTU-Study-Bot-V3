@@ -11,8 +11,9 @@ app = Flask(__name__)
 def home():
     return "Bot Running"
 
-
+# NEW
 def run_flask():
+    import os
     port = int(os.environ.get("PORT", 8000))
     app.run(host="0.0.0.0", port=port, use_reloader=False)
 
