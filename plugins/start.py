@@ -63,7 +63,7 @@ async def start(client, message):
             pass
 
     await message.reply_photo(
-        photo="file_0000000066dc7208900c1d54f651a62b",
+        photo="https://pic-link-bot.lovable.app/i/telegram-1779366829596-64036ff9.jpg",
         caption=START_TEXT,
         reply_markup=START_BUTTONS
     )
