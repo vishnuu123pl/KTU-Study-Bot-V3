@@ -1,5 +1,4 @@
 from pyrogram import Client, filters
-# ✅ Fix — import from config
 from config import ADMINS
 
 @Client.on_message(
