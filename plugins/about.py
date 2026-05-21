@@ -27,7 +27,7 @@ ABOUT_BUTTONS = InlineKeyboardMarkup([
     [
         InlineKeyboardButton(
             "📢 𝘜𝘱𝘥𝘢𝘵𝘦𝘴",
-            url="https://t.me/YOUR_CHANNEL"
+            url="https://t.me/YOUR_CHANNEL" #Your Channel name(replace)
         )
     ],
     [
