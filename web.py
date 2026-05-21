@@ -1,22 +1,21 @@
-import os
-import threading
 from flask import Flask
-from bot import app, main
+import threading
+import asyncio
+from bot import main
 
-flask_app = Flask(__name__)
+app = Flask(__name__)
 
-@flask_app.route("/")
+
+@app.route("/")
 def home():
-    return "Bot is Running"
+    return "Bot Running"
 
 
 def run_flask():
-    port = int(os.environ.get("PORT", 8000))
 
-    flask_app.run(
+    app.run(
         host="0.0.0.0",
-        port=port,
-        use_reloader=False
+        port=8000
     )
 
 
@@ -31,4 +30,4 @@ if __name__ == "__main__":
 
     print("Flask Started")
 
-    app.run(main())
+    asyncio.run(main())
